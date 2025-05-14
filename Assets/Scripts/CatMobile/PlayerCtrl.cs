@@ -72,7 +72,7 @@ public class PlayerCtrl : MonoBehaviour {
 
     void MovePlayer(float playerSpeed)
     {
-        rb.velocity = new Vector2(playerSpeed, rb.velocity.y);
+        rb.linearVelocity = new Vector2(playerSpeed, rb.linearVelocity.y);
 
         if (playerSpeed < 0)
             sr.flipX = true;
@@ -85,7 +85,7 @@ public class PlayerCtrl : MonoBehaviour {
 
     void StopMoving()
     {
-        rb.velocity = new Vector2(0, rb.velocity.y);
+        rb.linearVelocity = new Vector2(0, rb.linearVelocity.y);
 
         if (!isJumping)
             anim.SetInteger("State", 0);
@@ -93,7 +93,7 @@ public class PlayerCtrl : MonoBehaviour {
 
     void ShowFalling()
     {
-        if (rb.velocity.y < 0)
+        if (rb.linearVelocity.y < 0)
         {
             anim.SetInteger("State", 3);
         }
@@ -112,7 +112,7 @@ public class PlayerCtrl : MonoBehaviour {
 
         if (canDoubleJump && !isGrounded)
         {
-            rb.velocity = Vector2.zero;
+            rb.linearVelocity = Vector2.zero;
             rb.AddForce(new Vector2(0, jumpSpeed)); // simply make the player jump in the y axis or upwards
             anim.SetInteger("State", 2);
 

@@ -25,8 +25,8 @@ public class Test : MonoBehaviour
         {
             transform.Translate(Vector2.left * speed * Time.deltaTime);
         }
-        else if(transform.position.x >= 9)
-{
+        else if (transform.position.x >= 9)
+        {
             transform.Translate(Vector2.right * speed * Time.deltaTime);
         }
     }

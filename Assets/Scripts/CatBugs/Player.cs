@@ -3,17 +3,24 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
     private float speed = 3f;
-    private float jumpForce = 20f;
+    private float jumpForce = 15f;
+    private int coins = 0;
+
     private SpriteRenderer sprite;
     private Rigidbody2D rb;
-    private bool isGround = true;
-    private int coins = 0;
     public TMP_Text coin_text;
+
     public bool isClimbing = false;
+    private bool isGround = true;
+
+
+    public Image bg;
+    public float bgSpeedMultiplier = 0.1f; // ��������� �������� ����
 
     // Start is called before the first frame update
     void Start()
@@ -31,13 +38,15 @@ public class Player : MonoBehaviour
         {
             if (Input.GetKey(KeyCode.A))
             {
-                rb.velocity = new Vector2(-speed, 0);
+                rb.linearVelocity = new Vector2(-speed, 0);
                 sprite.flipX = horizontal < 0;
+                MoveBackground(-speed);
             }
             else if (Input.GetKey(KeyCode.D))
             {
-                rb.velocity = new Vector2(speed, 0);
+                rb.linearVelocity = new Vector2(speed, 0);
                 sprite.flipX = horizontal < 0;
+                MoveBackground(speed);
             }
         }
         else
@@ -46,15 +55,15 @@ public class Player : MonoBehaviour
 
             if (Input.GetKey(KeyCode.W))
             {
-                rb.velocity = new Vector2(0, speed);
+                rb.linearVelocity = new Vector2(0, speed);
             }
             else if (Input.GetKey(KeyCode.S))
             {
-                rb.velocity = new Vector2(0, -speed);
+                rb.linearVelocity = new Vector2(0, -speed);
             }
             else
             {
-                rb.velocity = new Vector2(0, 0);
+                rb.linearVelocity = new Vector2(0, 0);
             }
         }
 
@@ -116,5 +125,13 @@ public class Player : MonoBehaviour
             rb.gravityScale = 1;
             transform.position = new Vector2(collision.transform.position.x + collision.gameObject.GetComponent<Renderer>().bounds.size.x, transform.position.y);
         }
+    }
+
+    void MoveBackground(float playerSpeed)
+    {
+        Vector2 currentPos = bg.rectTransform.anchoredPosition;
+        // �������� ���� � ��������������� �����������
+        currentPos.x += playerSpeed * bgSpeedMultiplier * Time.deltaTime;
+        bg.rectTransform.anchoredPosition = currentPos;
     }
 }

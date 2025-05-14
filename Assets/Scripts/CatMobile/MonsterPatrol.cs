@@ -20,9 +20,9 @@ public class MonsterPatrol : MonoBehaviour {
 
     void Move()
     {
-        Vector2 temp = rb.velocity;
+        Vector2 temp = rb.linearVelocity;
 
         temp.x = speed;
-        rb.velocity = temp;
+        rb.linearVelocity = temp;
     }
 }

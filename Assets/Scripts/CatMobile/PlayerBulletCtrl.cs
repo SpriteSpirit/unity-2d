@@ -14,7 +14,7 @@ public class PlayerBulletCtrl : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        rb.velocity = velocity;
+        rb.linearVelocity = velocity;
 	}
 
     private void OnCollisionEnter2D(Collision2D collision)

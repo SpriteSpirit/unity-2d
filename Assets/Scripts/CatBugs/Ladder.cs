@@ -22,15 +22,15 @@ public class Ladder : MonoBehaviour
         {
             if (Input.GetKey(KeyCode.W))
             {
-                collision.GetComponent<Rigidbody2D>().velocity = new Vector2(0, speed);
+                collision.GetComponent<Rigidbody2D>().linearVelocity = new Vector2(0, speed);
             }
             else if (Input.GetKey(KeyCode.S))
             {
-                collision.GetComponent<Rigidbody2D>().velocity = new Vector2(0, -speed);
+                collision.GetComponent<Rigidbody2D>().linearVelocity = new Vector2(0, -speed);
             }
             else
             {
-                collision.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
+                collision.GetComponent<Rigidbody2D>().linearVelocity = new Vector2(0, 0);
             }
         }
     }

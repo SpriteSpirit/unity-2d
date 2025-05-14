@@ -32,9 +32,11 @@ public class Enemy : MonoBehaviour
             else
             {
                 indexPosition = 0;
+
                 if (isFlip)
                 { sprite.flipX = true; }
-                else { sprite.flipX = false; }
+                else 
+                { sprite.flipX = false; }
             }
         }
     }
